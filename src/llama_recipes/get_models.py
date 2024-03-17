@@ -14,6 +14,12 @@ from megatron_lm.megatron.global_vars import get_args
 from transformers.integrations import is_deepspeed_zero3_enabled
 
 
+def load_config_from_json(config_file):
+    with open(config_file, 'r') as f:
+        config = json.load(f)
+        config = MixtralConfig.from_dict(config)
+    return config
+
 def get_model(
     model_name: str, use_cache: bool = False
 ) -> LlamaForCausalLM | MistralForCausalLM | MixtralForCausalLM | AutoModelForCausalLM:
@@ -83,6 +89,20 @@ def get_model(
 
         return model  # type: ignore
 
+    elif "Mixtral_pretrain" in model_name:
+        
+        config = load_config_from_json(config_file = "config.json")    
+        print(config)
+        config.attn_implementation = "flash_attention_2"
+        config.max_position_embeddings = args.seq_length
+        config.output_router_logits=args.output_router_logits
+        config.torch_dtype=torch.bfloat16 if args.bf16 else torch.float16
+        config.use_cache=use_cache
+        
+        model = MixtralForCausalLM(config)
+        
+        return model  # type: ignore
+    
     elif "Mixtral" in model_name:
         model = MixtralForCausalLM.from_pretrained(
             model_name,
