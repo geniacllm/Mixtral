@@ -5,15 +5,12 @@
 #$ -o outputs/mixtral-7bx8/okazaki-cc/
 #$ -cwd
 
-# module load
-source /etc/profile.d/modules.sh
-module load cuda/11.8/11.8.0
-module load cudnn/8.9/8.9.2
-module load nccl/2.16/2.16.2-1
-module load hpcx/2.12
+set -e
+echo ""
 
-# swich virtual env
-source .env/bin/activate
+# Stores the directory paths as variables.
+ucllm_nedo_dev="${HOME}/moe-recipes"
+megatron_deepspeed_dir="${ucllm_nedo_dev}/Megatron-DeepSpeed
 
 # distributed settings
 export MASTER_ADDR=$(/usr/sbin/ip a show dev bond0 | grep 'inet ' | awk '{ print $2 }' | cut -d "/" -f 1)
@@ -71,23 +68,6 @@ mkdir -p ${CHECKPOINT_SAVE_DIR}
 # data config
 
 DATA_PATH="${megatron_deepspeed_dir}/dataset/arxiv_text_document"
-if [ ! -f "${data_path}.bin" ] || [ ! -f "${data_path}.idx" ]; then
-    echo "Either ${data_path}.bin or ${data_path}.idx doesn't exist yet, so download arxiv.jsonl and preprocess the data."
-    wget https://data.together.xyz/redpajama-data-1T/v1.0.0/arxiv/arxiv_024de5df-1b7f-447c-8c3a-51407d8d6732.jsonl \
-        --directory-prefix ${megatron_deepspeed_dir}/dataset/
-    mv ${megatron_deepspeed_dir}/dataset/arxiv_024de5df-1b7f-447c-8c3a-51407d8d6732.jsonl ${megatron_deepspeed_dir}/dataset/arxiv.jsonl
-    python ${megatron_deepspeed_dir}/tools/preprocess_data.py \
-        --tokenizer-type SentencePieceTokenizer \
-        --tokenizer-model ${input_tokenizer_file} \
-        --input ${megatron_deepspeed_dir}/dataset/arxiv.jsonl \
-        --output-prefix ${megatron_deepspeed_dir}/dataset/arxiv \
-        --dataset-impl mmap \
-        --workers 64 \
-        --append-eod
-else
-    echo "Both ${data_path}.bin and ${data_path}.idx already exist."
-fi
-echo ""
 
 # job name
 JOB_NAME="Mixtral-8x7b-NVE-okazaki-lab-cc-${NODE_TYPE}-${NUM_NODES}node-${NUM_GPUS}gpu-${SEQ_LENGTH}s-BS=${GLOBAL_BATCH_SIZE}-LR=${LR}-MINLR=${MIN_LR}-WARMUP=${LR_WARMUP_STEPS}-WD=${WEIGHT_DECAY}-GC=${GRAD_CLIP}"
