@@ -10,6 +10,7 @@ from transformers import (
 )
 from llama_recipes.utils.distributed import get_rank, is_rank_0
 import torch
+import json
 from megatron_lm.megatron.global_vars import get_args
 from transformers.integrations import is_deepspeed_zero3_enabled
 
@@ -91,7 +92,7 @@ def get_model(
 
     elif "Mixtral_pretrain" in model_name:
         
-        config = load_config_from_json(config_file = "config.json")    
+        config = load_config_from_json(config_file = "/root/moe-recipes/src/llama_recipes/config.json")    
         print(config)
         config.attn_implementation = "flash_attention_2"
         config.max_position_embeddings = args.seq_length

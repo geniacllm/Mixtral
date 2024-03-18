@@ -84,6 +84,24 @@ mkdir -p ${CHECKPOINT_SAVE_DIR}
 # data config
 
 DATA_PATH="${megatron_deepspeed_dir}/dataset/arxiv_text_document"
+if [ ! -f "${DATA_PATH}.bin" ] || [ ! -f "${DATA_PATH}.idx" ]; then
+    echo "Either ${DATA_PATH}.bin or ${DATA_PATH}.idx doesn't exist yet, so download arxiv.jsonl and preprocess the data."
+    wget https://data.together.xyz/redpajama-data-1T/v1.0.0/arxiv/arxiv_024de5df-1b7f-447c-8c3a-51407d8d6732.jsonl \
+        --directory-prefix ${megatron_deepspeed_dir}/dataset/
+    mv ${megatron_deepspeed_dir}/dataset/arxiv_024de5df-1b7f-447c-8c3a-51407d8d6732.jsonl ${megatron_deepspeed_dir}/dataset/arxiv.jsonl
+    python ${megatron_deepspeed_dir}/tools/preprocess_data.py \
+        --tokenizer-type SentencePieceTokenizer \
+        --tokenizer-model ${TOKENIZER_MODEL} \
+        --input ${megatron_deepspeed_dir}/dataset/arxiv.jsonl \
+        --output-prefix ${megatron_deepspeed_dir}/dataset/arxiv \
+        --dataset-impl mmap \
+        --workers 64 \
+        --append-eod
+else
+    echo "Both ${data_path}.bin and ${data_path}.idx already exist."
+fi
+echo ""
+
 
 # job name
 JOB_NAME="Mixtral-8x7b-NVE-okazaki-lab-cc-${NODE_TYPE}-${NUM_NODES}node-${NUM_GPUS}gpu-${SEQ_LENGTH}s-BS=${GLOBAL_BATCH_SIZE}-LR=${LR}-MINLR=${MIN_LR}-WARMUP=${LR_WARMUP_STEPS}-WD=${WEIGHT_DECAY}-GC=${GRAD_CLIP}"
@@ -127,10 +145,9 @@ mpirun -np $NUM_GPUS \
   --save ${CHECKPOINT_SAVE_DIR} \
   --load ${CHECKPOINT_SAVE_DIR} \
   --use-zero \
-  --zero-config "scripts/abci/mixtral/mixtral-config.json" \
+  --zero-config "${HOME}/moe-recipes/scripts/abci/mixtral/mixtral-config.json" \
   --zero-stage 3 \
   --no-meta-device \
   --use-mpi \
-  --wandb-entity "prj-jalm" \
   --wandb-project "Mixtral-8x7b" \
   --wandb-name "${JOB_NAME}"
