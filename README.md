@@ -38,7 +38,7 @@ source ~/.bashrc
 
 ### 2.Mixtral7*8B zero3用の仮想環境の構築
 
-計算ノードログイン、計算ノードで仮想環境作成したほうが早い
+計算ノードログイン、計算ノードで仮想環境作成すべき
 ```bash
 srun --partition g2 --nodes=1 --gpus-per-node=1 --time=03:00:00 --pty bash -i
 ```
@@ -73,29 +73,11 @@ conda activate mixtralenv
 conda install nvidia/label/cuda-11.8.0::cuda-toolkit
 pip install --upgrade pip setuptools wheel
 ```
-##### (候補1)condaでのinstall、エラーでた場合教えてください
+
+##### condaでのinstall
 ```bash
 cd ~/moe-recipes
 bash install_gcp.sh
-```
-
-##### (候補2)mpi4pyがinstallできなくて、2つに分けました。(動作未確認、試行錯誤していたら候補1でinstallされました。)
-mpi4pyのinstallにはシステムレベルでのopenmpiのインストールが必要です。sudo権限がなく現在の環境ではできないので、$HOME/openmpiのローカルにopenmpiをインストールします。
-```bash
-cd ~/moe-recipes
-bash install_gcp_1.sh
-
-wget https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.6.tar.gz
-gunzip -c openmpi-4.1.6.tar.gz | tar xf -
-cd ~/moe-recipes/openmpi-4.1.6
-./configure --prefix=$HOME/openmpi
-make all install
-
-export PATH=$HOME/openmpi/bin:$PATH
-export LD_LIBRARY_PATH=$HOME/openmpi/lib:$LD_LIBRARY_PATH
-
-cd ~/moe-recipes
-bash install_gcp_2.sh
 ```
 
 #### 2.2 apexのインストール
