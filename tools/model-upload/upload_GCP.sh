@@ -2,10 +2,6 @@
 
 set -e
 
-# Activate the correct conda environment
-source ~/miniconda3/etc/profile.d/conda.sh
-conda activate mixtralenv
-
 start=1000
 end=1000
 increment=250
@@ -19,5 +15,5 @@ for ((i = start; i <= end; i += increment)); do
 
   python ${ucllm_nedo_dev}/tools/model-upload/upload.py \
     --ckpt-path $upload_dir \
-    --repo-name ks5531/test
+    --repo-name ks5531/testGCP
 done
