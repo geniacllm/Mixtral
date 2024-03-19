@@ -133,16 +133,20 @@ GPUはいらないかもしれないです。
 ### 1.deepspeedのcheckpointの変換
 ```bash
 cd ~/moe-recipes/tools/checkpoint-convert/scripts/abci
-sbatch convert_deepspeed_colab.sh --nodes=1 --gpus-per-node=1 --time=01:00:00
+sbatch convert_deepspeed_GCP.sh --nodes=1 --gpus-per-node=1 --time=01:00:00
 ```
 ### 2.Huggingfaceのcheckpointへの変換
 ```bash
 cd ~/moe-recipes/tools/checkpoint-convert/scripts/abci
-sbatch convert_ckpt_colab.sh --nodes=1 --gpus-per-node=1 --time=01:00:00
+sbatch convert_ckpt_GCP.sh --nodes=1 --gpus-per-node=1 --time=01:00:00
 ```
 ### 3.Huggingfaceへの登録
+hugginfaceのデモが利用できなかったため
+現在プロジェクト名とiterの設定をハードコーディングしています。
+iter分、自動で行えるように修正が必要
+
 ```bash
 cd ~/moe-recipes/tools/model-upload
-sbatch upload.sh　--nodes=1 --gpus-per-node=1 --time=01:00:00
+sbatch upload_GCP.sh　--nodes=1 --gpus-per-node=1 --time=01:00:00
 ```
 
