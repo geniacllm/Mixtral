@@ -94,10 +94,10 @@ pip install -v --disable-pip-version-check --no-cache-dir --no-build-isolation -
 
 #### 2.3 コードのコンパイル
 ```bash
-%cd ~/moe-recipes/megatron_lm/megatron/core/datasets
+cd ~/moe-recipes/megatron_lm/megatron/core/datasets
 python setup.py build_ext --inplace
 
-%cd ~/moe-recipes/tools/tokenizer
+cd ~/moe-recipes/tools/tokenizer
 
 ```
 
