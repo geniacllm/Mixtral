@@ -127,3 +127,22 @@ wandb login
 cd ~/moe-recipes/scripts/abci/mixtral
 sbatch mixtral-7bx8_pretrain_GCP.sh --nodes=1 --gpus-per-node=1 --time=06:00:00
 ```
+
+## Huggingface登録(GCP用コードの作成が必要)
+GPUはいらないかもしれないです。
+### 1.deepspeedのcheckpointの変換
+```bash
+cd ~/moe-recipes/tools/checkpoint-convert/scripts/abci
+sbatch convert_deepspeed_colab.sh --nodes=1 --gpus-per-node=1 --time=01:00:00
+```
+### 2.Huggingfaceのcheckpointへの変換
+```bash
+cd ~/moe-recipes/tools/checkpoint-convert/scripts/abci
+sbatch convert_ckpt_colab.sh --nodes=1 --gpus-per-node=1 --time=01:00:00
+```
+### 3.Huggingfaceへの登録
+```bash
+cd ~/moe-recipes/tools/model-upload
+sbatch upload.sh　--nodes=1 --gpus-per-node=1 --time=01:00:00
+```
+
