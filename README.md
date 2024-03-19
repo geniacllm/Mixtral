@@ -97,6 +97,10 @@ pip install -v --disable-pip-version-check --no-cache-dir --no-build-isolation -
 %cd ~/moe-recipes/megatron_lm/megatron/core/datasets
 python setup.py build_ext --inplace
 
-%cd ~/moe-recipes
+%cd ~/moe-recipes/tools/tokenizer
 
 ```
+
+## 事前学習の実行
+%cd ~/moe-recipes/scripts/abci/mixtral
+sbatch mixtral-7bx8_pretrain_GCP.sh --nodes=1 --gpus-per-node=1 --time=06:00:00
