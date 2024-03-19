@@ -2,18 +2,18 @@
 
 set -e
 
-start=0
-end=5000
-increment=500
-
-tokenizer_dir=
-upload_base_dir=/upload/path
+start=1000
+end=1000
+increment=250
+ucllm_nedo_dev="${HOME}/moe-recipes"
+tokenizer_dir=${ucllm_nedo_dev}/tokenizer_model_directory
+upload_base_dir=${ucllm_nedo_dev}/huggingface
 
 for ((i = start; i <= end; i += increment)); do
   upload_dir=$upload_base_dir/iter_$(printf "%07d" $i)
   cp -r $tokenizer_dir/tokenizer* $upload_dir
 
-  python tools/model-upload/upload.py \
+  python ${ucllm_nedo_dev}/tools/model-upload/upload.py \
     --ckpt-path $upload_dir \
-    --repo-name hf-organization/Llama2-7b-base-iter$(printf "%07d" $i)
+    --repo-name ks5531/test
 done
