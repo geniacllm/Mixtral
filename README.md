@@ -95,13 +95,7 @@ bash install_gcp_2.sh
 
 #### 2.2 apexのインストール
 ```bash
-cd ~/moe-recipes
-#将来的に不要です。学習データの保存先、こちらのディレクトリのまま、学習コードを作ってしまいました。
-git clone https://github.com/hotsuyuki/Megatron-DeepSpeed
-
-cd ~/moe-recipes
-git clone https://github.com/NVIDIA/apex
-cd apex
+cd ~/moe-recipes/apex
 pip install -v --disable-pip-version-check --no-cache-dir --no-build-isolation --config-settings "--build-option=--cpp_ext" --config-settings "--build-option=--cuda_ext" ./
 ```
 
