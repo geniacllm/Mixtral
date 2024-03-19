@@ -105,9 +105,16 @@ def train(
 
             batch = next(train_dataloader)
 
+            #応急処置
+            max_value = torch.max(batch["input_ids"])
+            while max_value>32000:
+              batch = next(train_dataloader)
+              max_value = torch.max(batch["input_ids"])
+              #print(max_value)
+
             for key in batch.keys():
                 batch[key] = batch[key].to(local_rank)
-
+          
             with autocast():
                 output: MoeCausalLMOutputWithPast = model(**batch)
                 loss: torch.FloatTensor = output.loss  # type: ignore
