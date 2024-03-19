@@ -3,11 +3,16 @@
 
 環境構築方法はColabのnotebookに記載しています
 
-事前学習とfinetuningを行うことができます。
+* 事前学習
+* finetuning(独自モデルのHuggingfaceからは追加実装必要)
+* モデルのチェックポイントの変換
+* wandbへの書き込み
+* Huggingfaceへのアップロード
+を確認済みです。
 
 ## 配布環境での環境構築
 
-### condaを使えるようにする
+### 1.condaを使えるようにする
 既に使える場合は飛ばしてください
 
 ```bash
@@ -21,7 +26,7 @@ conda init
 source ~/.bashrc
 ```
 
-### MoE Recipes用の仮想環境の構築
+### 2.MoE Recipes用の仮想環境の構築
 
 ```bash
 conda create -n mixtralenv python=3.11
@@ -39,7 +44,7 @@ chmod +x ~/miniconda3/envs/mixtralenv/etc/conda/deactivate.d/rollback_environmen
 conda activate mixtralenv
 ```
 
-#### ライブラリのインストール
+#### 2.1 ライブラリのインストール
 ここから(mixtralenv)内です
 
 ```bash
@@ -72,7 +77,7 @@ cd ~/moe-recipes
 bash install_gcp.sh
 ```
 
-#### apexのインストール
+#### 2.2 apexのインストール
 ```bash
 cd ~/moe-recipes
 #将来的に不要です。学習データの保存先、こちらのディレクトリのまま、学習コードを作ってしまいました。
@@ -84,7 +89,7 @@ git clone https://github.com/NVIDIA/apex
 pip install -v --disable-pip-version-check --no-cache-dir --no-build-isolation --config-settings "--build-option=--cpp_ext" --config-settings "--build-option=--cuda_ext" ./
 ```
 
-#### コードのコンパイル
+#### 2.3 コードのコンパイル
 ```bash
 %cd ~/moe-recipes/megatron_lm/megatron/core/datasets
 python setup.py build_ext --inplace
