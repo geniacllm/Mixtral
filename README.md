@@ -61,7 +61,8 @@ cd ~/moe-recipes
 bash install_gcp.sh
 ```
 
-##### (候補2)mpi4pyがinstallできなくて、2つに分けました。
+##### (候補2)mpi4pyがinstallできなくて、2つに分けました。(動作未確認、試行錯誤していたら候補1でinstallされました。)
+mpi4pyのinstallにはシステムレベルでのopenmpiのインストールが必要です。sudo権限がなく現在の環境ではできないので、$HOME/openmpiのローカルにopenmpiをインストールします。
 ```bash
 cd ~/moe-recipes
 bash install_gcp_1.sh
@@ -71,6 +72,9 @@ gunzip -c openmpi-4.1.6.tar.gz | tar xf -
 cd ~/moe-recipes/openmpi-4.1.6
 ./configure --prefix=$HOME/openmpi
 make all install
+
+export PATH=$HOME/openmpi/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/openmpi/lib:$LD_LIBRARY_PATH
 
 cd ~/moe-recipes
 bash install_gcp_2.sh
