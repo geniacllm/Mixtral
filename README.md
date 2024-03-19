@@ -110,6 +110,7 @@ python setup.py build_ext --inplace
 暫定的に公開されているものをダウンロードしています。
 ```bash
 cd ~/moe-recipes/tools/tokenizer
+python download_tokenizer.py
 ```
 
 ## wandbログイン
