@@ -11,7 +11,7 @@ set -e
 pip install --upgrade pip
 
 # pip install requirements
-pip install -r requirements.txt
+pip install -r requirements_gcp.txt
 
 # distirbuted training requirements
 conda install mpi4py

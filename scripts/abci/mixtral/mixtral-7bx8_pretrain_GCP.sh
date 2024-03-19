@@ -1,4 +1,8 @@
 #!/bin/bash
+#SBATCH --job-name=pretrain_job
+#SBATCH --output=pretrain_job_output.txt
+#SBATCH --error=pretrain_job_error.txt
+
 #$ -l rt_AF=16
 #$ -l h_rt=12:0:00:00
 #$ -j y

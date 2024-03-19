@@ -1,4 +1,8 @@
 #!/bin/bash
+#SBATCH --job-name=deepspeed_job
+#SBATCH --output=deepspeed_job_output.txt
+#SBATCH --error=deepspeed_job_error.txt
+
 #$ -l rt_AF=1
 #$ -l h_rt=10:00:00
 #$ -j y

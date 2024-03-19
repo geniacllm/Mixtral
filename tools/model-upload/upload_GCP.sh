@@ -1,4 +1,7 @@
 #!/bin/bash
+#SBATCH --job-name=huggingface_job
+#SBATCH --output=huggingface_job_output.txt
+#SBATCH --error=huggingface_job_error.txt
 
 set -e
 

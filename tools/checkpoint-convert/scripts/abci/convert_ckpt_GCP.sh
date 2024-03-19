@@ -1,4 +1,10 @@
 #!/bin/bash
+
+#SBATCH --job-name=convert_job
+#SBATCH --output=convert_job_output.txt
+#SBATCH --error=convert_job_error.txt
+
+
 #$ -l rt_F=1
 #$ -l h_rt=10:00:00
 #$ -j y
