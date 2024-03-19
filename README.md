@@ -1,5 +1,5 @@
 # MoE Recipes
-現状Colabの実装までです
+現状Colab(A100)の実装までです
 
 環境構築方法はColabのnotebookに記載しています
 
