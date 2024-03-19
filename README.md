@@ -103,7 +103,11 @@ wandb上でプロジェクトの作成が必要です、プロジェクト名:Mi
 ```bash
 wandb login
 ```
-
+ログインノードへの移動
+```
+conda deactivate
+exit
+```
 
 ## 事前学習の実行
 ```bash
