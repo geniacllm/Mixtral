@@ -55,8 +55,13 @@ git clone https://{user}:{password}@github.com/kumagai6/moe.git moe-recipes
 
 pip install --upgrade pip setuptools wheel
 ```
+##### (候補1)condaでのinstall、エラーでた場合教えてください
+```bash
+cd ~/moe-recipes
+bash install_gcp.sh
+```
 
-##### (候補1)mpi4pyがinstallできなくて、2つに分けました。確認済み
+##### (候補2)mpi4pyがinstallできなくて、2つに分けました。
 ```bash
 cd ~/moe-recipes
 bash install_gcp_1.sh
@@ -64,17 +69,11 @@ bash install_gcp_1.sh
 wget https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.6.tar.gz
 gunzip -c openmpi-4.1.6.tar.gz | tar xf -
 cd ~/moe-recipes/openmpi-4.1.6
-./configure --prefix=/usr/local
+./configure --prefix=$HOME/openmpi
 make all install
 
 cd ~/moe-recipes
 bash install_gcp_2.sh
-```
-
-##### (候補2)上記の代わりにこちらでもうまくいくかも、試してないです。
-```bash
-cd ~/moe-recipes
-bash install_gcp.sh
 ```
 
 #### 2.2 apexのインストール
