@@ -1,4 +1,4 @@
-# MoE Recipes
+# Mixtral7*8B zero3
 現状Colab(A100)の実装までです
 
 環境構築方法はColabのnotebookに記載しています
@@ -26,7 +26,7 @@ conda init
 source ~/.bashrc
 ```
 
-### 2.MoE Recipes用の仮想環境の構築
+### 2.Mixtral7*8B zero3用の仮想環境の構築
 
 ```bash
 conda create -n mixtralenv python=3.11
