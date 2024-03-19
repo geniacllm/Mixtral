@@ -101,6 +101,7 @@ bash install_gcp_2.sh
 #### 2.2 apexのインストール
 ```bash
 cd ~/moe-recipes/apex
+pip uninstall ninja -y && pip install ninja==1.11.1
 pip install -v --disable-pip-version-check --no-cache-dir --no-build-isolation --config-settings "--build-option=--cpp_ext" --config-settings "--build-option=--cuda_ext" ./
 ```
 
