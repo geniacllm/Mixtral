@@ -124,6 +124,6 @@ wandb login
 
 ## 事前学習の実行
 ```bash
-%cd ~/moe-recipes/scripts/abci/mixtral
+cd ~/moe-recipes/scripts/abci/mixtral
 sbatch mixtral-7bx8_pretrain_GCP.sh --nodes=1 --gpus-per-node=1 --time=06:00:00
 ```
