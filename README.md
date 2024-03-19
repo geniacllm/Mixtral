@@ -102,9 +102,11 @@ python setup.py build_ext --inplace
 ```
 
 ## wandbログイン
+wandb上でプロジェクトの作成が必要です、プロジェクト名:Mixtral-8x7b
 ```bash
 wandb login
 ```
+
 
 ## 事前学習の実行
 ```bash
