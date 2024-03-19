@@ -40,7 +40,15 @@ git clone https://{user}:{password}@github.com/kumagai6/moe.git moe-recipes
 pip install --upgrade pip setuptools wheel
 
 cd ~/moe-recipes
-bash install_gcp.sh
+bash install_gcp_1.sh
+
+#全てyで不要なファイルを削除してメモリを解放します。
+conda clean --all
+#pipでmpi4pyをインストールしたいですが、libopenmpi-devをapt-getでinstallすることを求められました。こちらsudo権限がなく使えないコマンドなので
+#condaでinstallしています。かなり時間がかかります。もっと早い方法があるかもしれません。ChatGPTにはmambaでやる事を勧められました。
+conda install -c conda-forge mpi4py
+
+bash install_gcp_2.sh
 #将来的に不要です。
 git clone https://github.com/hotsuyuki/Megatron-DeepSpeed
 
