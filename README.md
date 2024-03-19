@@ -53,7 +53,7 @@ conda activate mixtralenv
 ```
 
 #### 2.1 ライブラリのインストール
-ここから(mixtralenv)内です
+ここから事前学習まで(mixtralenv)内です、(mixtralenv)内でgitが使えなくなったなどあれば必要に応じて仮想環境抜けてください
 
 ```bash
 conda install nvidia/label/cuda-11.8.0::cuda-toolkit
