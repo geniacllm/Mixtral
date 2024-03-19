@@ -1,5 +1,8 @@
 # Mixtral7*8B zero3
-現状Colab(A100)の実装までです
+現状Colab(A100)の実装まで確認できました(3/19)
+https://wandb.ai/kumagai/Mixtral-8x7b/runs/xand9yxg/workspace?nw=nwuserkumagai
+https://huggingface.co/ks5531/test?text=Than
+https://www.notion.so/matsuolab-geniac/898095ba8ecd4c70b729d0f250018aea?v=58767320667149caa006cba4df718e89&p=d759dd108f7f4406a85f2dc2393cc5bf&pm=s
 
 環境構築方法はColabのnotebookに記載しています
 * トークナイザーの読み込み
