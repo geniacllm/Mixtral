@@ -106,7 +106,8 @@ cd ~/moe-recipes/megatron_lm/megatron/core/datasets
 python setup.py build_ext --inplace
 ```
 
-## トークナイザーダウンロード、暫定的に公開されているものをダウンロードしています。
+## トークナイザー
+暫定的に公開されているものをダウンロードしています。
 ```bash
 cd ~/moe-recipes/tools/tokenizer
 ```
