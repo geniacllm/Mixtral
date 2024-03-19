@@ -92,11 +92,9 @@ def get_model(
 
     elif "Mixtral_pretrain" in model_name:
         
-        config = load_config_from_json(config_file = "/root/moe-recipes/src/llama_recipes/config.json")    
-        print(config)
+        config = load_config_from_json(config_file = "/root/moe-recipes/src/llama_recipes/config.json") 
         config.attn_implementation = "flash_attention_2"
         config.max_position_embeddings = args.seq_length
-        config.output_router_logits=args.output_router_logits
         config.torch_dtype=torch.bfloat16 if args.bf16 else torch.float16
         config.use_cache=use_cache
         

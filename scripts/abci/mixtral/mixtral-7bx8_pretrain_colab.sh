@@ -62,8 +62,8 @@ SEQ_LENGTH=1024
 SLIDING_WINDOW_SIZE=1024
 DATA_PARALLEL_SIZE=$NUM_GPUS
 
-MICRO_BATCH_SIZE=2
-GLOBAL_BATCH_SIZE=256
+MICRO_BATCH_SIZE=1
+GLOBAL_BATCH_SIZE=2
 TRAIN_STEPS=25000
 
 # optimizer config
@@ -77,7 +77,7 @@ GRAD_CLIP=1
 # checkpoint & tokenizer
 TOKENIZER_MODEL="${ucllm_nedo_dev}/tokenizer_model_directory/tokenizer.model"
 CHECKPOINT_DIR=Mixtral_pretrain
-CHECKPOINT_SAVE_DIR="/bb/llm/gaf51275/llama/checkpoints/Mixtral-8x7b/okazaki-cc-lr_${LR}-minlr_${MIN_LR}_warmup_${LR_WARMUP_STEPS}_sliding_window_${SLIDING_WINDOW_SIZE}"
+CHECKPOINT_SAVE_DIR="${ucllm_nedo_dev}/okazaki-cc-lr_${LR}-minlr_${MIN_LR}_warmup_${LR_WARMUP_STEPS}_sliding_window_${SLIDING_WINDOW_SIZE}"
 
 mkdir -p ${CHECKPOINT_SAVE_DIR}
 
@@ -121,7 +121,7 @@ mpirun -np $NUM_GPUS \
   --micro-batch-size ${MICRO_BATCH_SIZE} \
   --global-batch-size ${GLOBAL_BATCH_SIZE} \
   --train-iters ${TRAIN_STEPS} \
-  --tokenizer-type Llama2Tokenizer \
+  --tokenizer-type SentencePieceTokenizer \
   --tokenizer-model ${TOKENIZER_MODEL} \
   --data-path ${DATA_PATH} \
   --split 949,50,1 \
