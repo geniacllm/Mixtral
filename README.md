@@ -38,6 +38,11 @@ source ~/.bashrc
 
 ### 2.Mixtral7*8B zero3用の仮想環境の構築
 
+計算ノードログイン、計算ノードで仮想環境作成したほうが早い
+```bash
+srun --partition g2 --nodes=1 --gpus-per-node=1 --time=03:00:00 --pty bash -i
+```
+
 ```bash
 git clone https://{user}:{password}@github.com/kumagai6/moe.git moe-recipes
 cd ~/moe-recipes
