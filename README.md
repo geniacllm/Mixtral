@@ -23,6 +23,18 @@ source ~/.bashrc
 
 ### MoE Recipes用の仮想環境の構築
 
+```bash
 conda create -n mixtralenv python=3.11
 conda activate mixtralenv
+```
+
+ここから(mixtralenv)内です
+
+```bash
 conda install nvidia/label/cuda-11.8.0::cuda-toolkit
+
+#gitのuser名とアクセストークンを入れてください
+git clone https://{user}:{password}@github.com/kumagai6/moe.git moe-recipes
+
+pip install --upgrade pip setuptools wheel
+```
