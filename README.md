@@ -39,6 +39,13 @@ source ~/.bashrc
 ### 2.Mixtral7*8B zero3用の仮想環境の構築
 
 ```bash
+git clone https://{user}:{password}@github.com/kumagai6/moe.git moe-recipes
+cd ~/moe-recipes
+git clone https://github.com/hotsuyuki/Megatron-DeepSpeed
+git clone https://github.com/NVIDIA/apex
+```
+
+```bash
 conda create -n mixtralenv python=3.11
 
 mkdir -p ~/miniconda3/envs/mixtralenv/etc/conda/activate.d
@@ -59,10 +66,6 @@ conda activate mixtralenv
 
 ```bash
 conda install nvidia/label/cuda-11.8.0::cuda-toolkit
-
-#gitのuser名とアクセストークンを入れてください
-git clone https://{user}:{password}@github.com/kumagai6/moe.git moe-recipes
-
 pip install --upgrade pip setuptools wheel
 ```
 ##### (候補1)condaでのinstall、エラーでた場合教えてください
