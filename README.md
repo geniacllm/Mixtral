@@ -28,6 +28,7 @@ conda create -n mixtralenv python=3.11
 conda activate mixtralenv
 ```
 
+#### ライブラリのインストール
 ここから(mixtralenv)内です
 
 ```bash
@@ -37,4 +38,23 @@ conda install nvidia/label/cuda-11.8.0::cuda-toolkit
 git clone https://{user}:{password}@github.com/kumagai6/moe.git moe-recipes
 
 pip install --upgrade pip setuptools wheel
+
+cd ~/moe-recipes
+bash install_gcp.sh
+#将来的に不要です。
+git clone https://github.com/hotsuyuki/Megatron-DeepSpeed
+
+%cd ~/moe-recipes
+git clone https://github.com/NVIDIA/apex
+%cd apex
+pip install -v --disable-pip-version-check --no-cache-dir --no-build-isolation --config-settings "--build-option=--cpp_ext" --config-settings "--build-option=--cuda_ext" ./
+```
+
+#### コードのコンパイル
+```bash
+%cd ~/moe-recipes/megatron_lm/megatron/core/datasets
+python setup.py build_ext --inplace
+
+%cd ~/moe-recipes
+
 ```
