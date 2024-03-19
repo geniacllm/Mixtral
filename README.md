@@ -103,6 +103,7 @@ cd ~/moe-recipes/tools/tokenizer
 
 ## wandbログイン
 wandb上でプロジェクトの作成が必要です、プロジェクト名:Mixtral-8x7b
+
 対応コードが個人のプロジェクトになっています。組織用のコード修正できたら更新します。
 ```bash
 wandb login
