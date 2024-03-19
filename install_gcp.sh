@@ -13,16 +13,8 @@ pip install --upgrade pip
 # pip install requirements
 pip install -r requirements.txt
 
-
-wget https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.6.tar.gz
-gunzip -c openmpi-4.1.6.tar.gz | tar xf -
-cd ~/moe-recipes/openmpi-4.1.6
-./configure --prefix=/usr/local
-make all install
-
-cd ~/moe-recipes
 # distirbuted training requirements
-pip install mpi4py
+conda install mpi4py
 
 # huggingface requirements
 pip install huggingface_hub
