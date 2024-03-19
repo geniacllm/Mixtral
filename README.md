@@ -72,10 +72,6 @@ conda activate mixtralenv
 ```bash
 conda install nvidia/label/cuda-11.8.0::cuda-toolkit
 pip install --upgrade pip setuptools wheel
-```
-
-##### condaでのinstall
-```bash
 cd ~/moe-recipes
 bash install_gcp.sh
 ```
