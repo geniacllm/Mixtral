@@ -101,6 +101,9 @@ python setup.py build_ext --inplace
 
 ```
 
+## wandbログイン
+wandb login
+
 ## 事前学習の実行
 ```bash
 %cd ~/moe-recipes/scripts/abci/mixtral
