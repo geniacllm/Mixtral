@@ -102,7 +102,9 @@ python setup.py build_ext --inplace
 ```
 
 ## wandbログイン
+```bash
 wandb login
+```
 
 ## 事前学習の実行
 ```bash
