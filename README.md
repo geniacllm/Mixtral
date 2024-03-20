@@ -129,7 +129,7 @@ exit
 ```
 ```bash
 cd ~/moe-recipes/scripts/abci/mixtral
-sbatch mixtral-7bx8_pretrain_GCP.sh --nodes=1 --gpus-per-node=1 --time=06:00:00
+sbatch mixtral-7bx8_pretrain_GCP.sh --partition g2 --nodes=1 --gpus-per-node=1 --time=06:00:00
 ```
 
 ## Huggingface登録(未確認)
