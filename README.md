@@ -106,6 +106,13 @@ wandb login
 ## 事前学習の実行
 
 ### インタラクティブモードによる実行
+処理に時間がかかるので一度ログアウトして再度インタラクティブモードで入っています
+```bash
+conda deactivate
+exit
+srun --partition g2 --nodes=1 --gpus-per-node=1 --time=06:00:00 --pty bash -i
+```
+
 ```bash
 cd ~/moe-recipes/scripts/abci/mixtral
 bash mixtral-7bx8_pretrain_GCP.sh
