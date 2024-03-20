@@ -13,7 +13,8 @@ import torch
 import json
 from megatron_lm.megatron.global_vars import get_args
 from transformers.integrations import is_deepspeed_zero3_enabled
-
+import os
+home_directory = os.getenv('HOME')
 
 def load_config_from_json(config_file):
     with open(config_file, 'r') as f:
@@ -92,7 +93,7 @@ def get_model(
 
     elif "Mixtral_pretrain" in model_name:
         
-        config = load_config_from_json(config_file = "/root/moe-recipes/src/llama_recipes/config.json") 
+        config = load_config_from_json(config_file = home_directory+"/moe-recipes/src/llama_recipes/config.json") 
         config.attn_implementation = "flash_attention_2"
         config.max_position_embeddings = args.seq_length
         config.torch_dtype=torch.bfloat16 if args.bf16 else torch.float16
