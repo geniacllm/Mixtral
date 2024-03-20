@@ -14,7 +14,7 @@ https://www.notion.so/matsuolab-geniac/898095ba8ecd4c70b729d0f250018aea?v=587673
 
 * トークナイザーの読み込み
 * 事前学習
-* finetuning(独自モデルのHuggingfaceからは追加実装必要)
+* finetuning(独自モデルのHuggingfaceからは追加実装必要、Huggingface用に変換する前の事前学習結果からのfinetuningは設定の編集のみで可能です)
 * モデルのチェックポイントの変換
 * wandbへの書き込み
 * Huggingfaceへのアップロード
