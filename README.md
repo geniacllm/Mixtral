@@ -1,4 +1,6 @@
 # Mixtral7*8B zero3
+Gitの運用方法決まったら移動します！
+
 現状Colab(A100)の実装まで確認できました(3/19)
 
 Colabの環境構築方法はnotebookに記載しています
