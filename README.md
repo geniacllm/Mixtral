@@ -124,6 +124,7 @@ bash mixtral-7bx8_pretrain_GCP.sh
 ### sbatchによる実行(未確認)
 こちらうまくいきませんでした。3/20
 sbatchからの実行だとCUDAが見えてなくてerrorになりました。
+
 ログインノードへの移動
 ```
 conda deactivate
