@@ -95,7 +95,7 @@ if [ ! -f "${DATA_PATH}.bin" ] || [ ! -f "${DATA_PATH}.idx" ]; then
         --input ${megatron_deepspeed_dir}/dataset/arxiv.jsonl \
         --output-prefix ${megatron_deepspeed_dir}/dataset/arxiv \
         --dataset-impl mmap \
-        --workers 64 \
+        --workers 32 \
         --append-eod
 else
     echo "Both ${data_path}.bin and ${data_path}.idx already exist."
