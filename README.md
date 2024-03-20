@@ -103,19 +103,26 @@ wandb上でプロジェクトの作成が必要です、プロジェクト名:Mi
 ```bash
 wandb login
 ```
+## 事前学習の実行
+
+### インタラクティブモードによる実行
+```bash
+cd ~/moe-recipes/scripts/abci/mixtral
+bash mixtral-7bx8_pretrain_GCP.sh
+```
+
+### sbatchによる実行(未確認)
 ログインノードへの移動
 ```
 conda deactivate
 exit
 ```
-
-## 事前学習の実行
 ```bash
 cd ~/moe-recipes/scripts/abci/mixtral
 sbatch mixtral-7bx8_pretrain_GCP.sh --nodes=1 --gpus-per-node=1 --time=06:00:00
 ```
 
-## Huggingface登録(GCP用コードの作成が必要)
+## Huggingface登録(未確認)
 GPUはいらないかもしれないです。
 ### 1.deepspeedのcheckpointの変換
 ```bash
