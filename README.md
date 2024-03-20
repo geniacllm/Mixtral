@@ -2,6 +2,7 @@
 Gitの運用方法決まったら移動します！
 
 現状Colab(A100)の実装まで確認できました(3/19)
+配布環境インタラクティブモードでの実行まで確認できました(3/20)
 
 Colabの環境構築方法はnotebookに記載しています
 
@@ -46,7 +47,7 @@ srun --partition g2 --nodes=1 --gpus-per-node=1 --time=03:00:00 --pty bash -i
 ```
 
 ```bash
-git clone https://{user}:{password}@github.com/kumagai6/moe.git moe-recipes
+git clone https://{user}:{password}@github.com/geniacllm/Mixtral.git moe-recipes
 cd ~/moe-recipes
 git clone https://github.com/hotsuyuki/Megatron-DeepSpeed
 git clone https://github.com/NVIDIA/apex
