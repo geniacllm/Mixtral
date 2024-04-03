@@ -146,8 +146,10 @@ def main() -> None:
 
     # Convert the model to bfloat16 if fsdp and pure_bf16 is enabled
     if args.bf16:
+        print('-------args.bf16-------')
         model.to(torch.bfloat16)  # type: ignore
     elif args.fp16:
+        print('-------args.fp16-------')
         model.to(torch.float16)  # type: ignore
 
     set_z3_leaf_modules(  # z3_leaf
@@ -177,6 +179,10 @@ def main() -> None:
     if args.load:
         load_scheduler_state_dict(scheduler, args.load)  # type: ignore
 
+    print('----model----',model)
+    print('----optimizer----',optimizer)
+    print('----scheduler----',scheduler)
+    
     # ref: https://github.com/microsoft/DeepSpeed/pull/5008#issuecomment-1910607845
     model, optimizer, _, _, scheduler = accelerator.prepare(
         model,

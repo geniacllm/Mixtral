@@ -15,6 +15,7 @@ from megatron_lm.megatron.global_vars import get_args
 from transformers.integrations import is_deepspeed_zero3_enabled
 import os
 home_directory = os.getenv('HOME')
+recipe_dir = os.getenv('recipe_dir')
 
 def load_config_from_json(config_file):
     with open(config_file, 'r') as f:
@@ -86,17 +87,17 @@ def get_model(
             sliding_window=sliding_window,
             max_position_embeddings=mistral_max_length,
             attn_implementation="flash_attention_2",
-            torch_dtype=torch.bfloat16 if args.bf16 else torch.float16,
+            torch_dtype=torch.float16,
         )
 
         return model  # type: ignore
 
     elif "Mixtral_pretrain" in model_name:
         
-        config = load_config_from_json(config_file = home_directory+"/moe-recipes/src/llama_recipes/config.json") 
+        config = load_config_from_json(config_file = recipe_dir+"/src/llama_recipes/config.json") 
         config.attn_implementation = "flash_attention_2"
         config.max_position_embeddings = args.seq_length
-        config.torch_dtype=torch.bfloat16 if args.bf16 else torch.float16
+        config.torch_dtype=torch.float16
         config.use_cache=use_cache
         
         model = MixtralForCausalLM(config)
@@ -111,7 +112,7 @@ def get_model(
             max_position_embeddings=args.seq_length,
             # ref: https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1/blob/main/config.json#L19
             output_router_logits=args.output_router_logits,
-            torch_dtype=torch.bfloat16 if args.bf16 else torch.float16,
+            torch_dtype=torch.float16,
             use_cache=use_cache,
         )
 
@@ -200,7 +201,7 @@ def get_model(
                 load_in_8bit=True if args.quantization else None,
                 device_map="auto" if args.quantization else None,
                 use_cache=use_cache,
-                torch_dtype=torch.bfloat16,
+                torch_dtype=torch.float16,
                 trust_remote_code=True,
             )
         else:
@@ -209,7 +210,7 @@ def get_model(
                 load_in_8bit=True if args.quantization else None,
                 device_map="auto" if args.quantization else None,
                 use_cache=use_cache,
-                torch_dtype=torch.bfloat16,
+                torch_dtype=torch.float16,
                 trust_remote_code=True,
             )
 

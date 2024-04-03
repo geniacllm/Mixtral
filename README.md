@@ -54,23 +54,23 @@ git clone https://github.com/NVIDIA/apex
 ```
 
 ```bash
-conda create -n mixtralenv python=3.11
+conda create -n mixtralenv2 python=3.11
 
-mkdir -p ~/miniconda3/envs/mixtralenv/etc/conda/activate.d
-echo 'export ORIGINAL_LD_LIBRARY_PATH=$LD_LIBRARY_PATH' > ~/miniconda3/envs/mixtralenv/etc/conda/activate.d/edit_environment_variable.sh
-echo 'export LD_LIBRARY_PATH="$HOME/miniconda3/envs/mixtralenv/lib:$LD_LIBRARY_PATH"' >> ~/miniconda3/envs/mixtralenv/etc/conda/activate.d/edit_environment_variable.sh
-chmod +x ~/miniconda3/envs/mixtralenv/etc/conda/activate.d/edit_environment_variable.sh
+mkdir -p ~/miniconda3/envs/mixtralenv2/etc/conda/activate.d
+echo 'export ORIGINAL_LD_LIBRARY_PATH=$LD_LIBRARY_PATH' > ~/miniconda3/envs/mixtralenv2/etc/conda/activate.d/edit_environment_variable.sh
+echo 'export LD_LIBRARY_PATH="$HOME/miniconda3/envs/mixtralenv2/lib:$LD_LIBRARY_PATH"' >> ~/miniconda3/envs/mixtralenv2/etc/conda/activate.d/edit_environment_variable.sh
+chmod +x ~/miniconda3/envs/mixtralenv2/etc/conda/activate.d/edit_environment_variable.sh
 
-mkdir -p ~/miniconda3/envs/mixtralenv/etc/conda/deactivate.d
-echo 'export LD_LIBRARY_PATH=$ORIGINAL_LD_LIBRARY_PATH' > ~/miniconda3/envs/mixtralenv/etc/conda/deactivate.d/rollback_environment_variable.sh
-echo 'unset ORIGINAL_LD_LIBRARY_PATH' >> ~/miniconda3/envs/mixtralenv/etc/conda/deactivate.d/rollback_environment_variable.sh
-chmod +x ~/miniconda3/envs/mixtralenv/etc/conda/deactivate.d/rollback_environment_variable.sh
+mkdir -p ~/miniconda3/envs/mixtralenv2/etc/conda/deactivate.d
+echo 'export LD_LIBRARY_PATH=$ORIGINAL_LD_LIBRARY_PATH' > ~/miniconda3/envs/mixtralenv2/etc/conda/deactivate.d/rollback_environment_variable.sh
+echo 'unset ORIGINAL_LD_LIBRARY_PATH' >> ~/miniconda3/envs/mixtralenv2/etc/conda/deactivate.d/rollback_environment_variable.sh
+chmod +x ~/miniconda3/envs/mixtralenv2/etc/conda/deactivate.d/rollback_environment_variable.sh
 
-conda activate mixtralenv
+conda activate mixtralenv2
 ```
 
 #### 2.1 ライブラリのインストール
-ここから事前学習まで(mixtralenv)内です、(mixtralenv)内でgitが使えなくなったなどあれば必要に応じて仮想環境抜けてください
+ここから事前学習まで(mixtralenv2)内です、(mixtralenv2)内でgitが使えなくなったなどあれば必要に応じて仮想環境抜けてください
 
 ```bash
 conda install nvidia/label/cuda-11.8.0::cuda-toolkit
