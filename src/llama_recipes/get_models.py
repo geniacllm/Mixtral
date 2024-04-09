@@ -96,7 +96,7 @@ def get_model(
 
     elif "Mixtral_pretrain" in model_name:
         
-        config = load_config_from_json(config_file = str(home_directory)+"Mixtral/src/llama_recipes/config.json") 
+        config = load_config_from_json(config_file = str(home_directory)+"/Mixtral/src/llama_recipes/config.json") 
         config.attn_implementation = "flash_attention_2"
         config.max_position_embeddings = args.seq_length
         config.torch_dtype=torch.float16
