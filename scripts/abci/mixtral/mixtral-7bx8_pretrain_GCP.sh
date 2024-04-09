@@ -17,7 +17,7 @@ source ~/miniconda3/etc/profile.d/conda.sh
 conda activate mixtralenv
 
 # Stores the directory paths as variables.
-ucllm_nedo_dev="${HOME}/moe-recipes"
+ucllm_nedo_dev="${HOME}/Mixtral"
 megatron_deepspeed_dir="${ucllm_nedo_dev}/Megatron-DeepSpeed"
 
 export PYTHONPATH="${ucllm_nedo_dev}/src:${PYTHONPATH}"
@@ -104,7 +104,8 @@ echo ""
 
 
 # job name
-JOB_NAME="Mixtral-8x7b-NVE-okazaki-lab-cc-${NODE_TYPE}-${NUM_NODES}node-${NUM_GPUS}gpu-${SEQ_LENGTH}s-BS=${GLOBAL_BATCH_SIZE}-LR=${LR}-MINLR=${MIN_LR}-WARMUP=${LR_WARMUP_STEPS}-WD=${WEIGHT_DECAY}-GC=${GRAD_CLIP}"
+JOB_NAME="Mixtral-8x7b-GENIAC-eric-gcp-single-node-v0.2"
+# JOB_NAME="Mixtral-8x7b-NVE-okazaki-lab-cc-${NODE_TYPE}-${NUM_NODES}node-${NUM_GPUS}gpu-${SEQ_LENGTH}s-BS=${GLOBAL_BATCH_SIZE}-LR=${LR}-MINLR=${MIN_LR}-WARMUP=${LR_WARMUP_STEPS}-WD=${WEIGHT_DECAY}-GC=${GRAD_CLIP}"
 
 # run
 mpirun -np $NUM_GPUS \
@@ -145,7 +146,7 @@ mpirun -np $NUM_GPUS \
   --save ${CHECKPOINT_SAVE_DIR} \
   --load ${CHECKPOINT_SAVE_DIR} \
   --use-zero \
-  --zero-config "${HOME}/moe-recipes/scripts/abci/mixtral/mixtral-config.json" \
+  --zero-config "${HOME}/Mixtral/scripts/abci/mixtral/mixtral-config.json" \
   --zero-stage 3 \
   --no-meta-device \
   --use-mpi \
