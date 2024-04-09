@@ -14,8 +14,6 @@ import json
 from megatron_lm.megatron.global_vars import get_args
 from transformers.integrations import is_deepspeed_zero3_enabled
 import os
-home_directory = os.getenv('HOME')
-recipe_dir = os.getenv('recipe_dir')
 
 def load_config_from_json(config_file):
     with open(config_file, 'r') as f:
@@ -94,7 +92,7 @@ def get_model(
 
     elif "Mixtral_pretrain" in model_name:
         
-        config = load_config_from_json(config_file = recipe_dir+"/src/llama_recipes/config.json") 
+        config = load_config_from_json(config_file = "~/Mixtral/src/llama_recipes/config.json") 
         config.attn_implementation = "flash_attention_2"
         config.max_position_embeddings = args.seq_length
         config.torch_dtype=torch.float16
