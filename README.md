@@ -47,8 +47,8 @@ srun --partition g2 --nodes=1 --gpus-per-node=1 --time=03:00:00 --pty bash -i
 ```
 
 ```bash
-git clone https://{user}:{password}@github.com/geniacllm/Mixtral.git moe-recipes
-cd ~/moe-recipes
+git clone https://{user}:{password}@github.com/geniacllm/Mixtral.git Mixtral
+cd ~/Mixtral
 git clone https://github.com/hotsuyuki/Megatron-DeepSpeed
 git clone https://github.com/NVIDIA/apex
 ```
@@ -75,27 +75,27 @@ conda activate mixtralenv2
 ```bash
 conda install nvidia/label/cuda-11.8.0::cuda-toolkit
 pip install --upgrade pip setuptools wheel
-cd ~/moe-recipes
+cd ~/Mixtral
 bash install_gcp.sh
 ```
 
 #### 2.2 apexのインストール
 ```bash
-cd ~/moe-recipes/apex
+cd ~/Mixtral/apex
 pip uninstall ninja -y && pip install ninja==1.11.1
 pip install -v --disable-pip-version-check --no-cache-dir --no-build-isolation --config-settings "--build-option=--cpp_ext" --config-settings "--build-option=--cuda_ext" ./
 ```
 
 #### 2.3 コードのコンパイル
 ```bash
-cd ~/moe-recipes/megatron_lm/megatron/core/datasets
+cd ~/Mixtral/megatron_lm/megatron/core/datasets
 python setup.py build_ext --inplace
 ```
 
 ## トークナイザー
 暫定的に公開されているものをダウンロードしています。
 ```bash
-cd ~/moe-recipes/tools/tokenizer
+cd ~/Mixtral/tools/tokenizer
 python download_tokenizer.py
 ```
 
@@ -119,7 +119,7 @@ srun --partition g2 --nodes=1 --gpus-per-node=1 --time=06:00:00 --pty bash -i
 ```
 
 ```bash
-cd ~/moe-recipes/scripts/abci/mixtral
+cd ~/Mixtral/scripts/abci/mixtral
 bash mixtral-7bx8_pretrain_GCP.sh
 ```
 
@@ -133,7 +133,7 @@ conda deactivate
 exit
 ```
 ```bash
-cd ~/moe-recipes/scripts/abci/mixtral
+cd ~/Mixtral/scripts/abci/mixtral
 sbatch mixtral-7bx8_pretrain_GCP.sh --partition g2 --nodes=1 --gpus-per-node=1 --time=06:00:00
 ```
 
@@ -141,12 +141,12 @@ sbatch mixtral-7bx8_pretrain_GCP.sh --partition g2 --nodes=1 --gpus-per-node=1 -
 GPUはいらないかもしれないです。
 ### 1.deepspeedのcheckpointの変換
 ```bash
-cd ~/moe-recipes/tools/checkpoint-convert/scripts/abci
+cd ~/Mixtral/tools/checkpoint-convert/scripts/abci
 sbatch convert_deepspeed_GCP.sh --nodes=1 --gpus-per-node=1 --time=01:00:00
 ```
 ### 2.Huggingfaceのcheckpointへの変換
 ```bash
-cd ~/moe-recipes/tools/checkpoint-convert/scripts/abci
+cd ~/Mixtral/tools/checkpoint-convert/scripts/abci
 sbatch convert_ckpt_GCP.sh --nodes=1 --gpus-per-node=1 --time=01:00:00
 ```
 ### 3.Huggingfaceへの登録
@@ -157,7 +157,7 @@ hugginfaceのデモが利用できなかったため
 iter分、自動で行えるように修正が必要
 
 ```bash
-cd ~/moe-recipes/tools/model-upload
+cd ~/Mixtral/tools/model-upload
 sbatch upload_GCP.sh　--nodes=1 --gpus-per-node=1 --time=01:00:00
 ```
 
