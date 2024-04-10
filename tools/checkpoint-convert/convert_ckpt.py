@@ -28,7 +28,7 @@ def main() -> None:
     args = parser.parse_args()
 
     if "Mixtral_pretrain" in args.model:
-        config = load_config_from_json(config_file = "/root/moe-recipes/src/llama_recipes/config.json") 
+        config = load_config_from_json(config_file = "~/Mixtral/src/llama_recipes/config.json") 
         config.attn_implementation = "flash_attention_2"
         config.max_position_embeddings = 1024
         config.torch_dtype=torch.bfloat16
