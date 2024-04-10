@@ -13,7 +13,7 @@
 # module load
 set -e
 
-ucllm_nedo_dev="${HOME}/moe-recipes"
+ucllm_nedo_dev="${HOME}/Mixtral"
 megatron_deepspeed_dir="${ucllm_nedo_dev}/Megatron-DeepSpeed"
 saved_model_directory="Mixtral-8x7b-GENIAC-eric-gcp-single-node-v0.2"
 
