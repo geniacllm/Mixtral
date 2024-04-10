@@ -15,21 +15,23 @@ set -e
 
 ucllm_nedo_dev="${HOME}/moe-recipes"
 megatron_deepspeed_dir="${ucllm_nedo_dev}/Megatron-DeepSpeed"
-export PYTHONPATH="${ucllm_nedo_dev}/src:${PYTHONPATH}"
-export PYTHONPATH="${ucllm_nedo_dev}:${PYTHONPATH}"
+saved_model_directory="Mixtral-8x7b-GENIAC-eric-gcp-single-node-v0.2"
 
-export MASTER_ADDR=$(hostname -i)
-export MASTER_PORT=$((10000 + ($SLURM_JOB_ID % 50000)))
-echo "MASTER_ADDR=${MASTER_ADDR}"
+# export PYTHONPATH="${ucllm_nedo_dev}/src:${PYTHONPATH}"
+# export PYTHONPATH="${ucllm_nedo_dev}:${PYTHONPATH}"
 
-start=250
-end=1000
-increment=250
+# export MASTER_ADDR=$(hostname -i)
+# export MASTER_PORT=$((10000 + ($SLURM_JOB_ID % 50000)))
+# echo "MASTER_ADDR=${MASTER_ADDR}"
+
+start=50
+end=50
+increment=50
 
 for ((i = start; i <= end; i += increment)); do
   ITERATION=$i
   FORMATTED_ITERATION=$(printf "iter_%07d" $ITERATION)
-  CHECK_POINT_PATH=${ucllm_nedo_dev}/okazaki-cc-lr_2e-5-minlr_2e-6_warmup_1000_sliding_window_1024/${FORMATTED_ITERATION}/fp32_model.bin
+  CHECK_POINT_PATH=${ucllm_nedo_dev}/${saved_model_directory}/${FORMATTED_ITERATION}/fp32_model.bin
   OUTPUT_PATH=${ucllm_nedo_dev}/huggingface/${FORMATTED_ITERATION}
 
   echo "convert ${CHECK_POINT_PATH} to ${OUTPUT_PATH}"
