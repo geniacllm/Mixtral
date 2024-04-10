@@ -1,3 +1,6 @@
+"""
+Transformersで学習したLlamaモデルを、Fully Sharded Data Parallel (FSDP)に変換。
+"""
 import sys
 
 sys.path.append("/bb/llm/gaf51275/llama/llama-recipes/src")

@@ -1,3 +1,6 @@
+"""
+Transformersライブラリのモデルをローカルに保存し、そしてHuggingFaceのモデル形式に変換可能。
+"""
 import argparse
 
 import torch

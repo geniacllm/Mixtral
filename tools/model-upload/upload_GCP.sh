@@ -5,12 +5,15 @@
 
 set -e
 
-start=1000
-end=1000
-increment=250
-ucllm_nedo_dev="${HOME}/moe-recipes"
+export HUGGINGFACE_HUB_TOKEN='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'
+
+start=50
+end=50
+increment=50
+saved_model_directory="Mixtral-8x7b-GENIAC-eric-gcp-single-node-v0.2"
+ucllm_nedo_dev="${HOME}/Mixtral"
 tokenizer_dir=${ucllm_nedo_dev}/tokenizer_model_directory
-upload_base_dir=${ucllm_nedo_dev}/huggingface
+upload_base_dir=${ucllm_nedo_dev}/${saved_model_directory}
 
 for ((i = start; i <= end; i += increment)); do
   upload_dir=$upload_base_dir/iter_$(printf "%07d" $i)
@@ -18,5 +21,5 @@ for ((i = start; i <= end; i += increment)); do
 
   python ${ucllm_nedo_dev}/tools/model-upload/upload.py \
     --ckpt-path $upload_dir \
-    --repo-name ks5531/testGCP
+    --repo-name Eric2333/Mixtral-GCP-upload-test2
 done

@@ -16,15 +16,16 @@ set -e
 source ~/miniconda3/etc/profile.d/conda.sh
 conda activate mixtralenv
 
-ucllm_nedo_dev="${HOME}/moe-recipes"
+ucllm_nedo_dev="${HOME}/Mixtral"
+saved_model_directory="Mixtral-8x7b-GENIAC-eric-gcp-single-node-v0.2"
 megatron_deepspeed_dir="${ucllm_nedo_dev}/Megatron-DeepSpeed"
 export PYTHONPATH="${ucllm_nedo_dev}/src:${PYTHONPATH}"
 export PYTHONPATH="${ucllm_nedo_dev}:${PYTHONPATH}"
 
-ITERATION=1000
+ITERATION=50
 FORMATTED_ITERATION=$(printf "iter_%07d" $ITERATION)
 
-CHECK_POINT_DIR=${ucllm_nedo_dev}/okazaki-cc-lr_2e-5-minlr_2e-6_warmup_1000_sliding_window_1024/${FORMATTED_ITERATION}
+CHECK_POINT_DIR=${ucllm_nedo_dev}/${saved_model_directory}/${FORMATTED_ITERATION}
 
 python ${ucllm_nedo_dev}/tools/checkpoint-convert/zero_to_fp32.py \
   --checkpoint-dir $CHECK_POINT_DIR \
