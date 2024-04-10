@@ -8,9 +8,8 @@
 set -e
 
 # swich virtual env
-conda activate mixtralenv
 
-python tools/inference/inference-mixtral.py \
-  --model-path /bb/llm/gaf51275/llama/huggingface-checkpoint/Mixtral-8x7B-v0.1 \
-  --tokenizer-path /bb/llm/gaf51275/llama/huggingface-checkpoint/Mixtral-8x7B-v0.1 \
+python ~/Mixtral/tools/inference/inference-mixtral.py \
+  --model-path Eric2333/Mixtral-GCP-upload-test2 \
+  --tokenizer-path ~/Mixtral/tokenizer_model_directory \
   --prompt "Tokyo is the capital of "

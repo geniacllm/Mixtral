@@ -110,7 +110,10 @@ class Encoder(object):
             doc_ids = []
             sentence_lens = []
             for sentence in sentences:
+                # ここでTokenize
                 sentence_ids = Encoder.tokenizer.tokenize(sentence)
+                if max(sentence_ids) > 32000:
+                    print(f"---------Warning--------: {sentence_ids}")
                 if len(sentence_ids) > 0:  # type: ignore
                     doc_ids.extend(sentence_ids)  # type: ignore
                     sentence_lens.append(len(sentence_ids))  # type: ignore
