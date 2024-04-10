@@ -20,6 +20,27 @@ except Exception as e:
     pass
 
 files = os.listdir(converted_ckpt)
+print(f"files: {files}")
+
+def upload_directory(directory_path, repo_name, branch_name, repo_type="model"):
+    api = HfApi()
+
+    for root, dirs, files in os.walk(directory_path):
+        for file in files:
+            file_path = os.path.join(root, file)
+            path_in_repo = os.path.relpath(file_path, start=directory_path)
+            print(f"Uploading {file_path} to {path_in_repo}...")
+
+            api.upload_file(
+                path_or_fileobj=file_path,
+                path_in_repo=path_in_repo,
+                repo_id=repo_name,
+                repo_type=repo_type,
+                commit_message=f"Upload {path_in_repo}",
+                revision=branch_name,
+            )
+            print(f"Successfully uploaded {path_in_repo} !")
+
 
 api = HfApi()
 if branch_name != "main":
@@ -31,6 +52,7 @@ if branch_name != "main":
         )
     except Exception:
         print(f"branch {branch_name} already exists, try again...")
+        
 print(f"to upload: {files}")
 for file in files:
     print(f"Uploading {file} to branch {branch_name}...")

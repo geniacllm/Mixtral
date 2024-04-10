@@ -142,12 +142,12 @@ GPUはいらないかもしれないです。
 ### 1.deepspeedのcheckpointの変換
 ```bash
 cd ~/Mixtral/tools/checkpoint-convert/scripts/abci
-sbatch convert_deepspeed_GCP.sh --nodes=1 --gpus-per-node=1 --time=01:00:00
+bash convert_deepspeed_GCP.sh
 ```
 ### 2.Huggingfaceのcheckpointへの変換
 ```bash
 cd ~/Mixtral/tools/checkpoint-convert/scripts/abci
-sbatch convert_ckpt_GCP.sh --nodes=1 --gpus-per-node=1 --time=01:00:00
+bash convert_ckpt_GCP.sh
 ```
 ### 3.Huggingfaceへの登録
 hugginfaceのデモが利用できなかったため
@@ -158,6 +158,6 @@ iter分、自動で行えるように修正が必要
 
 ```bash
 cd ~/Mixtral/tools/model-upload
-sbatch upload_GCP.sh　--nodes=1 --gpus-per-node=1 --time=01:00:00
+bash upload_GCP.sh
 ```
 
