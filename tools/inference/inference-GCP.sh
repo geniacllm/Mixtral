@@ -9,7 +9,6 @@ set -e
 
 # swich virtual env
 conda activate mixtralenv
-source .env/bin/activate
 
 python tools/inference/inference-mixtral.py \
   --model-path /bb/llm/gaf51275/llama/huggingface-checkpoint/Mixtral-8x7B-v0.1 \
