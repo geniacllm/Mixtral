@@ -163,3 +163,12 @@ cd ~/moe-recipes/tools/model-upload
 sbatch upload_GCP.sh　--nodes=1 --gpus-per-node=1 --time=01:00:00
 ```
 
+## License
+<!-- markdown-link-check-disable -->
+
+See the License file for Meta Llama 3.1 [here](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/LICENSE) and Acceptable Use Policy [here](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/USE_POLICY.md)
+
+See the License file for Meta Llama 3 [here](https://github.com/meta-llama/llama-models/blob/main/models/llama3/LICENSE) and Acceptable Use Policy [here](https://github.com/meta-llama/llama-models/blob/main/models/llama3/USE_POLICY.md)
+
+See the License file for Meta Llama 2 [here](https://github.com/meta-llama/llama-models/blob/main/models/llama2/LICENSE) and Acceptable Use Policy [here](https://github.com/meta-llama/llama-models/blob/main/models/llama2/USE_POLICY.md)
+<!-- markdown-link-check-enable -->
